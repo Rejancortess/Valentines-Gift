@@ -5,6 +5,13 @@ onload = () => {
     clearTimeout(c);
   }, 1000);
 
+  const openGiftButton = document.querySelector("#open-gift");
+  if (openGiftButton) {
+    openGiftButton.addEventListener("click", () => {
+      document.body.classList.remove("landing");
+    });
+  }
+
   const petalContainer = document.querySelector(".petal-rain");
   const rand = (min, max) => Math.random() * (max - min) + min;
 
