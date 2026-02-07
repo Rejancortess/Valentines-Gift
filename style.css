@@ -66,6 +66,50 @@ body {
   color: rgba(255, 209, 232, 0.9);
 }
 
+.landing-note {
+  font-size: 0.95rem;
+  margin-bottom: 1.4rem;
+  color: rgba(255, 209, 232, 0.95);
+  min-height: 1.4rem;
+}
+
+.landing-password {
+  display: grid;
+  gap: 0.8rem;
+  margin-bottom: 1.4rem;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(6px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.landing-password.is-visible {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+
+.landing-input {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 209, 232, 0.35);
+  background-color: rgba(0, 0, 0, 0.35);
+  color: #ffd1e8;
+  font-size: 1rem;
+  text-align: center;
+}
+
+.landing-input:focus {
+  outline: none;
+  border-color: rgba(255, 209, 232, 0.7);
+  box-shadow: 0 0 0 2px rgba(255, 111, 174, 0.25);
+}
+
+.landing-button--secondary {
+  background: linear-gradient(120deg, #ff9aa8, #ff6fae);
+}
+
 .landing-button {
   border: none;
   padding: 0.75rem 2.4rem;

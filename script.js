@@ -6,9 +6,39 @@ onload = () => {
   }, 1000);
 
   const openGiftButton = document.querySelector("#open-gift");
+  const landingTitle = document.querySelector(".landing-title");
+  const landingSubtitle = document.querySelector(".landing-subtitle");
+  const landingNote = document.querySelector("#landing-note");
+  const landingPassword = document.querySelector("#landing-password");
+  const passwordInput = document.querySelector("#gift-password");
+  const submitPassword = document.querySelector("#submit-password");
   if (openGiftButton) {
     openGiftButton.addEventListener("click", () => {
-      document.body.classList.remove("landing");
+      if (landingTitle) {
+        landingTitle.textContent = "It is a prank";
+      }
+      if (landingSubtitle) {
+        landingSubtitle.textContent = "Joke";
+      }
+      if (landingNote) {
+        landingNote.textContent = "Ask Rejan for the password to open the gift.";
+      }
+      if (landingPassword) {
+        landingPassword.classList.add("is-visible");
+        landingPassword.setAttribute("aria-hidden", "false");
+      }
+      openGiftButton.textContent = "Ask Rejan";
+    });
+  }
+
+  if (submitPassword && passwordInput) {
+    submitPassword.addEventListener("click", () => {
+      const value = passwordInput.value.trim();
+      if (value === "mwamwa") {
+        document.body.classList.remove("landing");
+      } else if (landingNote) {
+        landingNote.textContent = "Wrong password. Ask Rejan again.";
+      }
     });
   }
 
