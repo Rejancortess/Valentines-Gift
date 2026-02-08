@@ -11,6 +11,7 @@ onload = () => {
   const passwordInput = document.querySelector("#gift-password");
   const submitPassword = document.querySelector("#submit-password");
   const giftBg = document.querySelector(".gift-bg");
+  const landingBg = document.querySelector(".landing-bg");
   let stickersAdded = false;
   if (openGiftButton) {
     openGiftButton.addEventListener("click", () => {
@@ -30,9 +31,10 @@ onload = () => {
       const value = passwordInput.value.trim();
       if (value === "mwamwa") {
         document.body.classList.remove("landing");
+
         if (giftBg && !stickersAdded) {
           const imageUrl = "https://media1.tenor.com/m/EqEGS0cSfNUAAAAC/mwah-cat-rose.gif";
-          const stickerCount = 10;
+          const stickerCount = 15;
 
           for (let i = 0; i < stickerCount; i += 1) {
             const sticker = document.createElement("img");
@@ -62,6 +64,35 @@ onload = () => {
         landingNote.textContent = "Wrong password. Ask Rejan again.";
       }
     });
+  }
+
+  if (landingBg) {
+    const onboardingUrl = "https://media.tenor.com/zHk9ZfeUNyIAAAAi/cat-blush.gif";
+    const onboardingCount = 10;
+    const onboardingRand = (min, max) => Math.random() * (max - min) + min;
+
+    const pickBandY = () => (Math.random() < 0.5
+      ? onboardingRand(6, 22)
+      : onboardingRand(78, 92));
+
+    for (let i = 0; i < onboardingCount; i += 1) {
+      const sticker = document.createElement("img");
+      sticker.className = "landing-bg__img";
+      sticker.src = onboardingUrl;
+      sticker.alt = "";
+      sticker.loading = "lazy";
+
+      const size = `${onboardingRand(7, 11)}vmin`;
+      let x = onboardingRand(5, 92);
+      let y = pickBandY();
+
+      sticker.style.setProperty("--size", size);
+      sticker.style.left = `${x}vw`;
+      sticker.style.top = `${y}vh`;
+      sticker.style.transform = `rotate(${onboardingRand(-12, 12)}deg)`;
+
+      landingBg.appendChild(sticker);
+    }
   }
 
   const petalContainer = document.querySelector(".petal-rain");
