@@ -6,20 +6,14 @@ onload = () => {
   }, 1000);
 
   const openGiftButton = document.querySelector("#open-gift");
-  const landingTitle = document.querySelector(".landing-title");
-  const landingSubtitle = document.querySelector(".landing-subtitle");
   const landingNote = document.querySelector("#landing-note");
   const landingPassword = document.querySelector("#landing-password");
   const passwordInput = document.querySelector("#gift-password");
   const submitPassword = document.querySelector("#submit-password");
+  const giftBg = document.querySelector(".gift-bg");
+  let stickersAdded = false;
   if (openGiftButton) {
     openGiftButton.addEventListener("click", () => {
-      if (landingTitle) {
-        landingTitle.textContent = "It is a prank";
-      }
-      if (landingSubtitle) {
-        landingSubtitle.textContent = "Joke";
-      }
       if (landingNote) {
         landingNote.textContent = "Ask Rejan for the password to open the gift.";
       }
@@ -27,7 +21,7 @@ onload = () => {
         landingPassword.classList.add("is-visible");
         landingPassword.setAttribute("aria-hidden", "false");
       }
-      openGiftButton.textContent = "Ask Rejan";
+      openGiftButton.textContent = "Enter password";
     });
   }
 
@@ -36,6 +30,34 @@ onload = () => {
       const value = passwordInput.value.trim();
       if (value === "mwamwa") {
         document.body.classList.remove("landing");
+        if (giftBg && !stickersAdded) {
+          const imageUrl = "https://media1.tenor.com/m/EqEGS0cSfNUAAAAC/mwah-cat-rose.gif";
+          const stickerCount = 10;
+
+          for (let i = 0; i < stickerCount; i += 1) {
+            const sticker = document.createElement("img");
+            sticker.className = "gift-sticker";
+            sticker.src = imageUrl;
+            sticker.alt = "";
+            sticker.loading = "lazy";
+
+            const size = `${rand(14, 22)}vmin`;
+            const duration = `${rand(14, 26)}s`;
+            const delay = `${rand(-26, 0)}s`;
+            const drift = `${rand(-18, 18)}vw`;
+
+            sticker.style.setProperty("--size", size);
+            sticker.style.setProperty("--x", `${rand(0, 100)}vw`);
+            sticker.style.setProperty("--duration", duration);
+            sticker.style.setProperty("--delay", delay);
+            sticker.style.setProperty("--drift", drift);
+            sticker.style.setProperty("--rotate", `${rand(-18, 18)}deg`);
+
+            giftBg.appendChild(sticker);
+          }
+
+          stickersAdded = true;
+        }
       } else if (landingNote) {
         landingNote.textContent = "Wrong password. Ask Rejan again.";
       }

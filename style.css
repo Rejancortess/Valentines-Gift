@@ -39,19 +39,54 @@ body {
   width: min(90vw, 480px);
   padding: clamp(1.8rem, 4vw, 2.8rem);
   border-radius: 24px;
-  background: linear-gradient(135deg, rgba(255, 111, 174, 0.2), rgba(255, 59, 79, 0.12));
-  border: 1px solid rgba(255, 209, 232, 0.4);
-  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.35);
+  background: linear-gradient(160deg, rgba(255, 187, 219, 0.95), rgba(255, 132, 178, 0.9));
+  border: 1px solid rgba(255, 240, 247, 0.75);
+  box-shadow: 0 24px 50px rgba(0, 0, 0, 0.35);
   text-align: center;
-  color: #ffd1e8;
+  color: #3c0f1f;
   font-family: "Georgia", "Times New Roman", serif;
+  position: relative;
+  overflow: hidden;
+}
+
+.landing-ribbon {
+  position: relative;
+  display: inline-block;
+  padding: 0.5rem 2.2rem;
+  margin-bottom: 1.4rem;
+  background: linear-gradient(120deg, #ff3b4f, #ff6fae);
+  color: #fff;
+  font-size: 0.9rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  border-radius: 999px;
+  box-shadow: 0 10px 24px rgba(255, 59, 79, 0.35);
+}
+
+.landing-ribbon::before,
+.landing-ribbon::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  width: 18px;
+  height: 18px;
+  background: inherit;
+  transform: translateY(-50%) rotate(45deg);
+}
+
+.landing-ribbon::before {
+  left: -8px;
+}
+
+.landing-ribbon::after {
+  right: -8px;
 }
 
 .landing-eyebrow {
   text-transform: uppercase;
   letter-spacing: 0.25em;
   font-size: 0.75rem;
-  color: rgba(255, 209, 232, 0.8);
+  color: rgba(60, 15, 31, 0.75);
   margin-bottom: 0.8rem;
 }
 
@@ -63,13 +98,13 @@ body {
 .landing-subtitle {
   font-size: 1rem;
   margin-bottom: 1.4rem;
-  color: rgba(255, 209, 232, 0.9);
+  color: rgba(60, 15, 31, 0.85);
 }
 
 .landing-note {
   font-size: 0.95rem;
   margin-bottom: 1.4rem;
-  color: rgba(255, 209, 232, 0.95);
+  color: rgba(60, 15, 31, 0.9);
   min-height: 1.4rem;
 }
 
@@ -93,16 +128,16 @@ body {
   width: 100%;
   padding: 0.75rem 1rem;
   border-radius: 999px;
-  border: 1px solid rgba(255, 209, 232, 0.35);
-  background-color: rgba(0, 0, 0, 0.35);
-  color: #ffd1e8;
+  border: 1px solid rgba(60, 15, 31, 0.2);
+  background-color: rgba(255, 255, 255, 0.75);
+  color: #3c0f1f;
   font-size: 1rem;
   text-align: center;
 }
 
 .landing-input:focus {
   outline: none;
-  border-color: rgba(255, 209, 232, 0.7);
+  border-color: rgba(255, 59, 79, 0.6);
   box-shadow: 0 0 0 2px rgba(255, 111, 174, 0.25);
 }
 
@@ -136,7 +171,8 @@ body.landing .landing-overlay {
 body.landing .flowers,
 body.landing .petal-rain,
 body.landing .heart-rain,
-body.landing .valentine-message {
+body.landing .valentine-message,
+body.landing .gift-bg {
   opacity: 0;
   pointer-events: none;
 }
@@ -144,6 +180,48 @@ body.landing .valentine-message {
 body:not(.landing) .landing-overlay {
   opacity: 0;
   pointer-events: none;
+}
+
+.gift-bg {
+  position: fixed;
+  inset: 0;
+  z-index: 6;
+  pointer-events: none;
+  opacity: 0;
+  overflow: hidden;
+  transition: opacity 0.6s ease;
+}
+
+body:not(.landing) .gift-bg {
+  opacity: 0.65;
+}
+
+.gift-sticker {
+  position: absolute;
+  top: -20vh;
+  left: var(--x);
+  width: var(--size);
+  height: var(--size);
+  object-fit: contain;
+  opacity: 0.9;
+  filter: drop-shadow(0 6px 14px rgba(0, 0, 0, 0.25));
+  transform: translate(0, -10vh) rotate(var(--rotate));
+  animation: gift-fall var(--duration) linear infinite;
+  animation-delay: var(--delay);
+}
+
+@keyframes gift-fall {
+  0% {
+    transform: translate(0, -10vh) rotate(var(--rotate));
+    opacity: 0;
+  }
+  12% {
+    opacity: 0.95;
+  }
+  100% {
+    transform: translate(var(--drift), 110vh) rotate(calc(var(--rotate) + 360deg));
+    opacity: 0.9;
+  }
 }
 
 .valentine-message {
